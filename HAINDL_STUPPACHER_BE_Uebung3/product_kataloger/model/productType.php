@@ -2,9 +2,17 @@
 
 class productType
 {
-    protected $id;
+    private $id;
+    private $name;
+    private $products;
 
-    protected function __construct($id){
+    function __construct($id, $name){
+        $this->id = $id;
+        $this->name = $name;
+        $this->products = array();
+    }
 
+    function addProductsToProductType($product){
+        array_push($this->products, $product);
     }
 }
