@@ -19,4 +19,4 @@ print_r($results);
 */
 
 $katalogService = new katalogService();
-$katalogService->getProductTypesFromDatabase();
+$katalogService->getData();
