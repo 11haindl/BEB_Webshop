@@ -1,5 +1,4 @@
 <?php
-echo "Hello World!";
 include("config/config.php");
 
 /*$db = new PDO('mysql:host=localhost;dbname=ss16-bbb2-fst-1;charset=utf8', 'root', '');
