@@ -1,8 +1,6 @@
 <?php
 class productTypeGateway{
-    function addProductsToProductType($product){
-        //array_push($this->products, $product);
-    }
+
 
     function getProductTypesFromDatabase()
     {
@@ -17,7 +15,6 @@ class productTypeGateway{
             $productTypes = $this->pushItemsIntoArray($results);
         }
 
-        echo json_encode($productTypes);
         return $productTypes;
     }
 

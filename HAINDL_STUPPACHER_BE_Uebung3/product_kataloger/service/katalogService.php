@@ -2,32 +2,49 @@
 
 class katalogService
 {
-    function getData()
-    {
-        if (isset($_GET['action'])) {
-            $this->route($_GET['action']);
-        } else {
-            echo "No action provided";
-        }
-    }
 
     function route($action)
     {
         switch ($action) {
             case "listTypes":
-                $productTypeGateway = new productTypeGateway();
-                $productTypeGateway->getProductTypesFromDatabase();
-                break;
+                $displayAllTypesProper =  $this->displayListTypes();
+                return $displayAllTypesProper;
             case "listProductsByTypeId":
                 $productsGateway = new productsGateway();
-                $productsGateway->getProductsByTypeId();
-                break;
+                $list = $productsGateway->getProductsByTypeId();
+                return $list;
+
             default:
                 echo "action is not valid";
         }
     }
 
-    
+    function displayListTypes()
+    {
+        $productTypeGateway = new productTypeGateway();
+        $types = $productTypeGateway->getProductTypesFromDatabase();
+        $listOfAllTypes = array();
+        foreach ($types as $singularType){
+            $typesDTO = new \DTOs\productTypesDTO();
+            $typesDTO->productType = $singularType->name;
+            $addURLtoDTO = $this->buildURL()."?action=listProductsByTypeId&typeId=".$singularType->id;
+            $typesDTO->url = $addURLtoDTO;
+            array_push($listOfAllTypes, $typesDTO);
+        }
+        return $listOfAllTypes;
+    }
 
-    
+    function buildURL(){
+        if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
+            $url = "https://";
+        else
+            $url = "http://";
+
+        $url.= $_SERVER['HTTP_HOST'];
+
+
+        $url.= $_SERVER['REQUEST_URI'];
+
+        return $url;
+    }
 }

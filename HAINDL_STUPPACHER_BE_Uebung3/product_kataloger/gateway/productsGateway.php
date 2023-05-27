@@ -28,7 +28,6 @@ class productsGateway{
         foreach($results as $listedItem){
             array_push($listedProductsByTypeId, $listedItem);
         }
-        echo json_encode($listedProductsByTypeId);
         return $listedProductsByTypeId;
     }
 

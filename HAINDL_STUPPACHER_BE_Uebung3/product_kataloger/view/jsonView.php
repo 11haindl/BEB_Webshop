@@ -1,11 +1,12 @@
 <?php
-
-class jsonView
+class jsonView implements ViewInterface
 {
-
-    public function output($employee)
+    /**
+     * @param mixed $data
+     */
+    public function output($data): void
     {
         header("Content-Type: application/json");
-        echo json_encode($employee);
+        echo json_encode($data);
     }
 }

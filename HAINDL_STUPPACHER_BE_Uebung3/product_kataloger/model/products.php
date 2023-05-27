@@ -2,8 +2,8 @@
 
 class products
 {
-    private $productTypeID;
-    private $name;
+    public $productTypeID;
+    public $name;
 
     /**
      * wir verwenden den Standard-Konstruktor, weil das erstellen des 
