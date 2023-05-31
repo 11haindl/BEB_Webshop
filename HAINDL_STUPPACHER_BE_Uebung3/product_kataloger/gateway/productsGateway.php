@@ -23,12 +23,17 @@ class productsGateway{
         $statement->execute();
 
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $addURL = $this->buildListTypeURL();
 
         $listedProductsByTypeId = array();
         foreach($results as $listedItem){
             array_push($listedProductsByTypeId, $listedItem);
+            array_push($listedProductsByTypeId, $addURL);
         }
         return $listedProductsByTypeId;
     }
-
+    function buildListTypeURL(){
+        $typeURL = "http://localhost/BEB_Webshop/HAINDL_STUPPACHER_BE_Uebung3/product_kataloger/katalogIndex.php?action=listTypes";
+        return $typeURL;
+    }
 }

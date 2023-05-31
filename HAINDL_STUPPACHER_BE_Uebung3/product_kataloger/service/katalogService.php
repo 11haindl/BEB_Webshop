@@ -15,7 +15,7 @@ class katalogService
                 return $list;
 
             default:
-                echo "action is not valid";
+                return "action is not valid";
         }
     }
 
@@ -27,14 +27,14 @@ class katalogService
         foreach ($types as $singularType){
             $typesDTO = new \DTOs\productTypesDTO();
             $typesDTO->productType = $singularType->name;
-            $addURLtoDTO = $this->buildURL()."?action=listProductsByTypeId&typeId=".$singularType->id;
+            $addURLtoDTO = $this->buildProductsURL()."?action=listProductsByTypeId&typeId=".$singularType->id;
             $typesDTO->url = $addURLtoDTO;
             array_push($listOfAllTypes, $typesDTO);
         }
         return $listOfAllTypes;
     }
 
-    function buildURL(){
+   /* function buildURL(){
         if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')
             $url = "https://";
         else
@@ -46,5 +46,9 @@ class katalogService
         $url.= $_SERVER['REQUEST_URI'];
 
         return $url;
+    }*/
+    function buildProductsURL(){
+        $productsURL = "http://localhost/BEB_Webshop/HAINDL_STUPPACHER_BE_Uebung3/product_kataloger/katalogIndex.php";
+        return $productsURL;
     }
 }
